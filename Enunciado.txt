@@ -1,0 +1,17 @@
+La compañía JHCreativo requiere de una aplicación móvil que le permita a sus clientes realizar pedidos de sublimación forma remota. 
+
+Debe permitirle al usuario elegir tipo de ropa, talla, tipo de tela y técnica de sublimado, además el usuario debe tener la opción de realizar varios. 
+
+Tomando en cuenta el costo por metro cuadrado de tela y el valor de cada tipo de técnica de sublimación, Calcular el coste en tela, en sublimación y el coste total. 
+
+El monto para pagar por el usuario será del coste total más un agregado del 20%. 
+
+Se debe tomar en lo siguiente: 
+
+Tipos de Ropa: camisa chemise, camisa de botón, suéter, jersey, franelas, camiseta. 
+
+Talla: 3-4, 5-6, 7-8, 9-11, 12-14, 14-15, s, m, l, xl ,xxl ,xxxl. 
+
+Tipo de tela y precio por metro cuadrado: Atlética: 1.50, Micro-durazno: 1.75, Dry-Fit:2, Terry-Spum: 4, Algodon:3, Semi-Algodón 2.50 
+
+Técnica de sublimación y su costo por unidad: Sublimación Minimalista; 2, Sublimación Completa: 20, Bordado: 17, Vinil Textil: 16, DTF: 17. 

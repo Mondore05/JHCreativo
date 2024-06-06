@@ -1,0 +1,35 @@
+1) Tipos de Ropa
+
+camisa chemise, camisa de boton, sueter, jersie, franelas,camiseta.
+
+2) Talla
+
+Desde la 2 hasta la XXXL; 
+infantil: 3-4 5-6 7-8 9-11 12-14 14-15.
+unisex: s , m ,l ,xl ,xxl ,xxxl
+
+3) Tipo de Tela
+
+ Atletica , Microdurazno, Dry-Fit,Terry-Spum,Manchester, Algodon, Semi-Algodon, Tela de Mono.
+
+4) Tecnica de Sublimaje
+
+Sublimacion Minimalista; 2, Sublimacion Completa: 20, Bordado: 17, Vinil Textil: 16, DTF: 17.
+
+5) Propiedades de Sublimado
+
+Lugar y posicion, cantidad de estampados, tamaño, imagen o texto, diseño elaborado.
+
+6) Tiempo de Entrega: 
+
+Tiempo minimo en proporcion al pedido o a juicio del empleado 
+
+7) lugar de entrega:
+
+Entrega en el lugar de la compañia o Envios.
+
+***
+precios por metro de tela: Atletica: 1.50 , Microdurazno: 1.75 , Dry-Fit:2 ,Terry-Spum: 4 ,Manchester, Algodon:3, Semi-Algodon 2.50, Tela de Mono.
+
+metros de tela por ropa: 2-14: 1mts. 16-L: 1.5mts. XL XXl: 2 mts. XXXL: 2.50mts.
+
