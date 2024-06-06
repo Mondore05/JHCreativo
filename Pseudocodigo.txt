@@ -1,86 +1,81 @@
 Algoritmo JHCreativo
 Inicio
-var
+	Repetir 
+		Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
+		Mostrar << "Elija el tipo de ropa que desee";
+		Mostrar<<"1: Camisa Chemise, 2: Camisa de Botón, 3: Suéter, 4: Jersey, 5: Franelas, 6: Camiseta";
+		Leer >> tipoR;
 
-Repetir
+		Mostrar<< "Elija la talla que desee";
+		Mostrar<< "1: 3-4, 2: 5-6 , 3: 7-8, 4: 9-11, 5: 12-14, 6: 14-15, 7: S, 8: M, 9: L, 10: XL , 11:XXL ,12: XXXL";
+		Leer >> talla;
 
-Mostrar<< "Bienvenido al Sistema de JHCreativo para el sublimaje";
-Mostrar<< "Eliga que tipo de ropa desea sublimar";
-Mostrar<< "1: Camisa chemise, 2: Camisa de boton, 3: Sueter, 4: Jersey, 5: Franelas, 6: Camiseta.";
-Leer>> TipoR;
-Mostrar<< "Eliga la talla que desee";
-Mostrar<< "1: 3-4, 2: 5-6, 3: 7-8, 4: 9-11, 5: 12-14, 6: 14-15, 7: S, 8: M, 9: L, 10: XL, 11: XXL, 12: XXXL";
-leer>> Talla;
-Mostrar << "Eliga el tipo de tela";
-Mostrar << "1: Atlética, 2: Micro-durazno, 3: Dry-Fit, 4: Terry-Spum, 5: Algodon, 6: Semi-Algodón";
-leer >> Tela;
-Mostra << "Eliga al tecnica de sublimación";
-Mostrar<< "1: Sublimación Minimalista, 2: Sublimación Completa, 3: Bordado, 4: Vinil Textil, 5: DTF";
-Leer >> TecnicaS;
+		Mostrar << "Elija el tipo de tela disponible";
+		Mostrar << "1: Atlética: , 2: Micro-durazno, 3: Dry-Fit, 4: Terry-Spum, 5: Algodon, 6: Semi-Algodón .";
+		Leer >> tipoT;
 
-// el usuario debera poder elegir entre varias propiedades como el lugar, tamaño o posicion.
-// por ahora sera texto.
+		Mostrar << "Elija la técnica de sublimaje que necesite";
+		Mostrar << "1: Sublimación Minimalista, 2: Sublimación Completa, 3: Bordado, 4: Vinil Textil, 5: DTF";
+		Leer>> tipoS;
 
-Mostrar << "Escriba el texto para el diseño";
-Leer >> Texto;
+		Mientras ((TipoR < 1 Or TipoR > 6) Or (Talla < 1 Or Talla > 12) Or (Tela < 1 Or Tela > 6) Or (TecnicaS < 1 Or TecnicaS >  5)) Hacer;
+			Mostrar << "Datos Ingresados fuera de rango, por favor intente de nuevo";
+			Leer>> tipoR;
+			Leer>> talla;
+			Leer>> tipoT;
+			Leer>> tipoS;
+		FinMientras 
 
-Mientras ((TipoR < 1 Or TipoR > 6) Or (Talla < 1 Or Talla > 12) Or (Tela < 1 Or Tela > 6) Or (TecnicaS < 1 Or TecnicaS >  5)) Hacer;
-Mostrar << "Error al ingresar los datos, intentelo de nuevo";
-Leer >> TipoR;
-Leer >> Talla;
-Leer >> Tela;
-Leer >> TecnicaS;
-finMientras
+		//acumTela
 
-//contadores: tipo de tela coste en tela, tipo tecnica de sublimado.
+		Si (tipoT = 1) Entonces;
+			acumTela = acumTela + 1.50;
+		Sino
+			Si (tipoT = 2) Entonces;
+				acumTela = acumTela + 1.75;
+			Sino
+				Si (tipoT = 3) Entonces;
+					acumTela = acumTela + 2;
+				Sino
+					Si (tipoT = 4) Entonces;
+						acumTela = acumTela + 4;
+					Sino
+						Si (tipoT = 5) Entonces;
+							acumTela = acumTela + 3;
+						Sino
+							acumTela = acumTela + 2.5;
+		    			 	Finsi
+		    			Finsi
+		   		Finsi
+		  	Finsi
+		Finsi 
 
-Caso ((TipoR >= 1 and TipoR <= 6) and (Talla >= 1 And Talla <= 12) And (Tela >= 1 And Tela <= 6) And (TecnicaS >= 1 And TecnicaS <=  5)) Sea;
-    
-    Caso (TipoR = 1)
-    CamisaCCont = CamisaCCont + 1;
+		//AcumSub
 
-    Caso (TipoR = 2)
-    CamisaBCont = CamisaBCont + 1;
+		Si (tipoS = 1) Entonces;
+			acumSub = acumSub + 2 ;
+		Sino
+			Si (tipoS= 2) Entonces;
+				acumSub = acumSub + 20 ;
+			Sino
+				Si (tipoS = 3) Entonces;
+					acumSub = acumSub + 17;
+				Sino
+					Si (tipoS = 4) Entonces;
+						acumSub = acumSub + 16;
+					Sino
+						acumSub = acumSub + 17;
+		     			Finsi
+		    		Finsi
+		   	Finsi
+		Finsi
 
-    Caso (TipoR = 3)
-    SueterCont = SueterCont + 1;
+		Mostrar << "Pedido realizado con éxito";
+		Mostrar << ¿"Desea realizar un nuevo pedido?" (1: Si, 0: No);
+		Leer >> R;
+		Hasta (R= 0) 
+	FinRepetir 
 
-    Caso (TipoR = 4)
-    JerseyCont = JerseyCont + 1;
+//Mostrar precios
 
-    Caso (TipoR = 5)
-    FranelaCont = FranelaCont + 1;
-
-    Caso (TipoR = 6)
-    CamisetaCont = CamisetaCont + 1;
-
-    Caso (TecnicaS = 1)
-    MinimalistaCont = MinimalistaCont + 1;
-    
-    Caso (TecnicaS = 2)
-    CompletaCont = CompletaContn + 1;
-
-    Caso (TecnicaS = 3)
-    BordadoCont = BordadoCont + 1;
-
-    Caso (TecnicaS = 4)
-    VinilCont = VinilCont + 1;
-
-    Caso (TecnicaS = 5)
-    DTFCont = DTFCont + 1;
-
-    Otro Caso
-    Mostrar "Error";
-FinEnCaso    
-
-
-
-
-Mostrar << "Pedido realizado con exito";
-Mostrar << "¿Desea realizar otro?";
-Mostrar << "1: Si, 0: No";
-Leer R; //boleano
-
-hasta (R = 0);
-FinRepetir
 Fin
