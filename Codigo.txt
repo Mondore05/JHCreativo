@@ -155,4 +155,6 @@ Inicio
 		precioTAux = 2.5;
 	Fin EnCaso
 
+Devolver(precioTAux);
+
 finFuncion
