@@ -1,9 +1,34 @@
 Algoritmo JHCreativo
+
 Inicio
-	Repetir 
-		Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
+Var tipoR, tipoS, tipoT, TipoR:Entero, precioTela, costoTotal, acumTela = 0, acumSub = 0 :Real;
+
+Repetir
+
+menuDeInicio(tipoR,tipoS,tipoT,TipoR:Entero);
+Mostrar << menuDeInicio;
+
+precioTela = calcularPrecioTela ();
+
+calcularCosto(acumTela, acumSub: Real);
+Mostrar << calcularCosto;
+
+Mostrar<<"Pedido Realizado con éxito";
+Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
+Hasta (R = 0)
+FinRepetir
+
+mostrarCostos(costoTotal, acumSub, acumTela: Real);
+Mostrar << mostrarCostos;
+
+Fin
+
+
+Procedimiento menuDeInicio (S:tipoR,tipoS,tipoT,TipoR:Entero);
+Inicio
+Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
 		Mostrar << "Elija el tipo de ropa que desee";
-		Mostrar<<"1: Camisa Chemise, 2: Camisa de Botón, 3: Suéter, 4: Jersey, 5: Franelas, 6: Camiseta";
+		Mostrar<<"1: Camisa Chemise, 2: Franelas , 3: Camiseta , 4: Jersey, 5: Camisa de Botón , 6: Suéter ";
 		Leer >> tipoR;
 
 		Mostrar<< "Elija la talla que desee";
@@ -24,39 +49,58 @@ Inicio
 			Leer>> talla;
 			Leer>> tipoT;
 			Leer>> tipoS;
-		FinMientras 
+		FinMientras
+Fin
 
-		//acumTela
 
-		Si (tipoT = 1) Entonces;
-			acumTela = acumTela + 1.50;
+Procedimiento calcularCosto (E/S:acumTela,acumSub:Real);
+Inicio
+//Costos de Tela
+
+//chemise, franelas y camisas
+	Si (tipoR >= 1 or  tipoR <= 3) And (talla >= 1 or talla <= 5) Entonces;
+		// 1mts
+		acumTela = acumTela + precioTela;
+	Sino
+		Si (tipoR >= 1 or  tipoR <= 3) And (talla > 5 or talla <= 9) Entonces;
+			/// 1.5 mts
+			acumTela = acumTela + (precioTela * 1.5);
 		Sino
-			Si (tipoT = 2) Entonces;
-				acumTela = acumTela + 1.75;
+			Si (tipoR >= 1 or  tipoR <= 3) And (talla > 9 or talla <= 15) Entonces;
+				/// 1.75 mts
+				acumTela = acumTela + (precioTela * 1.75);
 			Sino
-				Si (tipoT = 3) Entonces;
-					acumTela = acumTela + 2;
-				Sino
-					Si (tipoT = 4) Entonces;
-						acumTela = acumTela + 4;
-					Sino
-						Si (tipoT = 5) Entonces;
-							acumTela = acumTela + 3;
-						Sino
-							acumTela = acumTela + 2.5;
-		    			 	Finsi
-		    			Finsi
-		   		Finsi
-		  	Finsi
-		Finsi 
+				Si (tipoR >= 1 or  tipoR <= 3) And (talla > 9 or talla <= 15) Entonces;
+					/// 2.3 mts
+					acumTela = acumTela + (precioTela * 2);
+				Finsi
+			Finsi
+		Finsi
+	Finsi
 
-		//AcumSub
 
-		Si (tipoS = 1) Entonces;
+// Jersey, Camisa de Boton y Sueters
+	Si (tipoR >= 1 or  tipoR <= 3) And (talla >= 1 or talla <= 5) Entonces;
+		// 1.2mts
+		acumTela = acumTela + precioTela;
+	Sino
+		Si (tipoR >= 1 or  tipoR <= 3) And (talla > 5 or talla <= 9) Entonces;
+			/// 1.75 mts
+			acumTela = acumTela + (precioTela * 1.5);
+		Sino
+			Si (tipoR >= 1 or  tipoR <= 3) And (talla > 9 or talla <= 15) Entonces;
+				/// 2.3 mts
+				acumTela = acumTela + (precioTela * 2.3);
+			Finsi
+		Finsi
+	Finsi
+
+	//Costo de Sublimaje 
+	Si (tipoS = 1) Entonces;
 			acumSub = acumSub + 2 ;
 		Sino
 			Si (tipoS= 2) Entonces;
-				acumSub = acumSub + 20 ;
+				acumSub = acumSub + 20;
 			Sino
 				Si (tipoS = 3) Entonces;
 					acumSub = acumSub + 17;
@@ -69,13 +113,18 @@ Inicio
 		    		Finsi
 		   	Finsi
 		Finsi
+FinProcedimiento
 
-		Mostrar << "Pedido realizado con éxito";
-		Mostrar << ¿"Desea realizar un nuevo pedido?" (1: Si, 0: No);
-		Leer >> R;
-		Hasta (R= 0) 
-	FinRepetir 
+mostrarCostos(S:costoTotal, E/S: acumSub, acumTela: Real);
+Inicio
+	
+	costoTotal = acumSub + acumTela;
+	costoTotal = costoTotal + (costoTotal * 0.20);
 
-//Mostrar precios
+	Mostrar << "¡Gracias Por realizar su pedido con nosotros!";
+	Mostrar << "Costes del pedido";
+	Mostrar << "Costo en metros2 de tela: " acumTela;
+	Mostrar << "Costo en sublimación: " acumSub;
+	Mostrar << "Costo total del pedido: ", costoTotal;
 
-Fin
+FinProcedimiento
