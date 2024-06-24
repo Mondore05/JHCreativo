@@ -2,30 +2,43 @@
 Algoritmo JHCreativo
 
 Inicio
-Var tipoR, tipoS, tipoT, TipoR:Entero, precioTela, costoTotal, acumTela = 0, acumSub = 0 :Real;
+Var tipoR, tipoS, tipoT, tipoR:Entero, precioTela, costoTotal, acumTela = 0, acumSub = 0 :Real;
+	sesion, sesionActiva = 0 : boleano, contraseña: cadena, pedidosCont = 0: Entero;
 
-Repetir
+   
 
-menuDeInicio(tipoR,tipoS,tipoT,TipoR:Entero);
-Mostrar << menuDeInicio;
+InicioSesion(s:sesion, sesionActiva :boleano, contraseña: cadena);
+Mostrar << InicioSesion;
+ 
+Si (sesion = 1) Entonces 	//Sesion Cliente
+	Repetir
+		menuDeInicio(tipoR,tipoS,tipoT,tipoR:Entero);
+		Mostrar << menuDeInicio;
 
-precioTela = calcularPrecioTela(tipoT: Real);
+		precioTela = calcularPrecioTela(tipoT: Real);
 
-calcularCosto(acumTela, acumSub: Real);
-Mostrar << calcularCosto;
+		calcularCosto(acumTela, acumSub: Real);
+		Mostrar << calcularCosto;
 
-Mostrar<<"Pedido Realizado con éxito";
-Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
-Hasta (R = 0)
-FinRepetir
+		Mostrar<<"Pedido Realizado con éxito";
+		Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
+		Leer >> R;
+		pedidosCont = pedidosCont + 1;
+		Hasta (R = 0)
+	FinRepetir
 
-mostrarCostos(costoTotal, acumSub, acumTela: Real);
-Mostrar << mostrarCostos;
+	mostrarCostos(costoTotal, acumSub, acumTela: Real);
+	Mostrar << mostrarCostos;
+
+
+	sino	//Sesion Administrador
+		
+FinSi 
 
 Fin
 
 
-Procedimiento menuDeInicio (S:tipoR,tipoS,tipoT,TipoR:Entero);
+Procedimiento menuDeInicio (S:tipoR,tipoS,tipoT,tipoR:Entero);
 Inicio
 Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
 		Mostrar << "Elija el tipo de ropa que desee";
@@ -44,7 +57,7 @@ Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
 		Mostrar << "1: Sublimación Minimalista, 2: Sublimación Completa, 3: Bordado, 4: Vinil Textil, 5: DTF";
 		Leer>> tipoS;
 
-		Mientras ((TipoR < 1 Or TipoR > 6) Or (Talla < 1 Or Talla > 12) Or (Tela < 1 Or Tela > 6) Or (TecnicaS < 1 Or TecnicaS >  5)) Hacer;
+		Mientras ((tipoR < 1 Or tipoR > 6) Or (Talla < 1 Or Talla > 12) Or (Tela < 1 Or Tela > 6) Or (TecnicaS < 1 Or TecnicaS >  5)) Hacer;
 			Mostrar << "Datos Ingresados fuera de rango, por favor intente de nuevo";
 			Leer>> tipoR;
 			Leer>> talla;
