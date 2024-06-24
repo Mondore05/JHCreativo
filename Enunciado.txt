@@ -2,7 +2,7 @@ La compañía JHCreativo requiere de una aplicación móvil que le permita a sus
 
 Debe permitirle al usuario elegir tipo de ropa, talla, tipo de tela y técnica de sublimado, además el usuario debe tener la opción de realizar varios. 
 
-Tomando en cuenta el costo por metro cuadrado de tela y el valor de cada tipo de técnica de sublimación, Calcular el coste en tela, en sublimación y el coste total. 
+Tomando en cuenta el costo por metro cuadrado de tela y el valor de cada tipo de técnica de sublimación, Calcular  el coste en tela, en sublimación y el coste total. 
 
 El monto para pagar por el usuario será del coste total más un agregado del 20%. 
 

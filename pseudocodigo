@@ -1,0 +1,32 @@
++++++++++++++++++++++++ Ideas +++++++++++++++++++++++++++++++++++++++
+darle la opcion al usuario de elgir un texto personlaizado un diseño predeterminado
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// inicio de sesion 
+// parametros: sesion, contraseña: cadena;
+//             sesion activa: para asegurar que la contraseña es correcta
+
+
+Procedimiento InicionSesion ( s:sesion, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
+Inicio 
+Mostrar << "Bienvenido, eliga que tipo de sesion desea inciar";
+Mostrar << "1: Cliente";
+Mostrar << "2: Administrador";
+Leer >> sesion;
+
+Si (sesion = 2)Entonces;
+    Mostrar <<"Ingrese la clave de administrador";
+    Leer >> contraseña;
+
+    Mientras (contraseña =¡ "Admin") Entonces
+        Mostrar << "contraseña incorrecta, intente de nuevo";
+        Leer >> contraseña;
+    FinMientras 
+    sesionActiva = 1;
+Finsi
+Fin
+
+TipoR[6] = ["Camisa Chemise","Franela","Camiseta","Jersey","Camisa de Boton","Sueter"],
+Talla[12] = ["3-4", "5-6", "7-8", "9-11", "12-14", "14-15", "S", "M", "L", "XL", "XXL" ,"XXXL"],
+tipoT[6] = ["Atlética", "Micro-durazno", "Dry-Fit", "Terry-Spum", "Algodon", "Semi-Algodón"],
+tipoS[5] = ["Sublimación Minimalista", "Sublimación Completa", "Bordado", "Vinil Textil", "DTF"],
+textoPersonalizado[pedidosAcum]: Cadena;

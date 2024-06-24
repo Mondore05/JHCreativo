@@ -1,0 +1,18 @@
+Algoritmo vectores 
+Inicio
+
+Var Vector1[3]:Cadena, i = 1: Entero;
+
+    Para(i = 1 hasta i = 3)Hacer;
+        En Caso (I > 1) Sea;
+            Caso (i = 1);
+            Vector1 [1] = "Ropa 1";
+            Caso (i = 2);
+            Vector1 [i] = "Ropa 2";
+            Otro Caso 
+            Vector1 [i] = "Ropa 3";
+        FinCaso
+    FinPara
+Fin
+
+FinAlgoritmo
