@@ -22,26 +22,52 @@ Inicio
 	Si (sesion = 1) Entonces 	//Sesion Cliente
 		
 		Repetir
-		pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);
+			pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);		
 
 			menuPedido(tipoR,tipoS,tipoT,tipoR:Entero);
 			Mostrar << menuPedido;
 
 			precioTela = calcularPrecioTela(tipoT: Real);
-
 			calcularCosto(acumTela, acumSub: Real);
-			Mostrar << calcularCosto;
-
 			llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
 		    
 			// opciones antes de culminar el pedido uwu nya
-			Mostrar<<"Pedido Realizado con éxito";
+			Mostrar << "";
+			i = 0: entero;
+			para (i = 1 hasta i = 6) hacer;
+			
+				Si (i = 1) Entonces
+					Mostrar << TipoR[pedidoAux[1]],", ";	
+				SiNo
+				Si (i = 2) Entonces
+					Mostrar <<"Talla: ", TipoR[pedidoAux[2]],", ";
+				SiNo
+				Si (i = 3) Entonces
+					Mostrar <<"Tela "; TipoR[pedidoAux[3]],", ";
+				SiNo
+				Si (i = 4) Entonces
+					Mostrar << "Tecnica: "TipoR[pedidoAux[4]]".";
+				SiNo
+				FinSi
+			finpara
+			Mostrar "¿Confirma su pedido? (1: si, 0: no)";
+			Leer >> RC;
+
+			Si (RC = 0) Entonces //si no confirma
+			Mostrar << "Pedido Cancelado";
 			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
 			Leer >> R;
-			pedidosCont = pedidosCont + 1;
+			
+			SiNo // si confirma
+			Mostrar "Pedido Realizado con exito";
+			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
+			Leer >> R;
+			pedidosCont = pedidosCont + 1;	
+			FinSi
+
 		Hasta (R = 0)
 		FinRepetir
-
+		// recibo final
 		mostrarCostos(costoTotal, acumSub, acumTela: Real);
 		Mostrar << mostrarCostos;
 
@@ -102,8 +128,6 @@ Inicio
 			Leer>> tipoS;   
 		FinMientras */
 Fin
-
-
 
 Procedimiento calcularCosto (E/S:acumTela,acumSub:Real);
 Inicio
@@ -207,7 +231,7 @@ Inicio
 
 Fin
 
-Procedimiento InicionSesion ( s:sesion, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
+Procedimiento InicionSesion (s:sesion, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
 Inicio 
 	Mostrar << "Bienvenido, eliga que tipo de sesion desea inciar";
 	Mostrar << "1: Cliente";
