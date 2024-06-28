@@ -3,7 +3,8 @@ Algoritmo JHCreativo
 
 Inicio
 	Var 
-	precioTela, costoTotal: real , sesion: entero, sesionActiva = 0:boleano, contraseña: cadena; 
+	precioTela, costoTotal: real , sesion: entero,contraseña: cadena;
+	R: boleano;
 	
 	//contadores y acumuladores:
 	acumTela = 0, acumSub = 0 :Real;
@@ -15,8 +16,9 @@ Inicio
 	talla[12] = ["3-4", "5-6", "7-8", "9-11", "12-14", "14-15", "S", "M", "L", "XL", "XXL" ,"XXXL"]: cadena;
 	tipoT[6] = ["Atlética", "Micro-durazno", "Dry-Fit", "Terry-Spum", "Algodon", "Semi-Algodón"]: cadena;
 	tipoS[5] = ["Sublimación Minimalista", "Sublimación Completa", "Bordado", "Vinil Textil", "DTF"]: cadena;
+	diseñosPedidos[5]: cadena;
 	
-	InicioSesion(s:sesion, sesionActiva :boleano, contraseña: cadena);
+	InicioSesion(s:sesion, contraseña: cadena);
 	Mostrar << InicioSesion;
  
 	Si (sesion = 1) Entonces 	//Sesion Cliente		
@@ -30,8 +32,9 @@ Inicio
 			calcularCosto(acumTela, acumSub: Real);
 			llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
 		    
-			confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R, RC:boleano);
+			confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R:boleano);
 			Mostrar << confirmaPedido();
+
 		Hasta (R = 0)
 		FinRepetir
 		// recibo final
@@ -40,7 +43,7 @@ Inicio
 		Mostrar << mostrarCostos;
 
 		sino	//Sesion Administrador
-		// revisa pedidos
+					// revisa pedidos
 		
 	FinSi 
 
@@ -48,6 +51,9 @@ Fin
 
 procedimiento menuPedido (S:tipoR,tipoS,tipoT,tipoR:Entero);
 Inicio
+	Var RD: boleano;
+		
+
 		Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
 		Mostrar << "Elija el tipo de ropa que desee";
 		Mostrar<<"1: Camisa Chemise, 2: Franelas , 3: Camiseta , 4: Jersey, 5: Camisa de Botón , 6: Suéter ";
@@ -82,20 +88,27 @@ Inicio
 		Mostrar << "Elija la técnica de sublimaje que necesite";
 		Mostrar << "1: Sublimación Minimalista, 2: Sublimación Completa, 3: Bordado, 4: Vinil Textil, 5: DTF";
 		Leer >> pedidoAux[4];
-
+		
 		//tecnica de sublimaje
 		Mientras (pedidoAux[4] <1 or pedidoAux[4] > 6) Hacer;
 		Mostrar << "dato invalido, intente con un numero dentro del rango";
 		Leer pedidoAux[4];
 		FinMientras
 
-	/*	Mientras ((tipoR < 1 Or tipoR > 6) Or (Talla < 1 Or Talla > 12) Or (Tela < 1 Or Tela > 6) Or (TecnicaS < 1 Or TecnicaS >  5)) Hacer;
-			Mostrar << "Datos Ingresados fuera de rango, por favor intente de nuevo";
-			Leer>> tipoR;
-			Leer>> talla;
-			Leer>> tipoT;
-			Leer>> tipoS;   
-		FinMientras */
+		Mostrar << "Elija el diseño que desea, puede elegir un diseño prestablecido o crear uno propio";
+		Mostrar << "0 :Ver diseños";
+		Mostrar << "1: Crear diseño";
+		Leer > RD;
+
+		Si (RD = 0) Entonces // Diseños del Jesus
+			Mostrar << ""; //Salto de linea
+			Mostrar << ""; 
+		SiNo
+		Mostrar << "A continuacion escriba el diseño que desea sublimar en su pedido";
+		Leer >> diseñosPedidos[pedidosCont];
+		Mostrar << "Diseño guardado";
+		FinSi
+
 Fin
 
 Procedimiento calcularCosto (E/S:acumTela,acumSub:Real);
@@ -207,6 +220,11 @@ Inicio
 	Mostrar << "2: Administrador";
 	Leer >> sesion;
 
+	Mientras (sesion < 1 or sesion > 2) hacer;
+		Mostrar <<"dato invalido, por favor eliga cliente o administrador";
+		Leer >> sesion; 
+	FinMientras
+
 	Si (sesion = 2)Entonces;
  	  	 Mostrar <<"Ingrese la clave de administrador";
   		  Leer >> contraseña;
@@ -214,12 +232,12 @@ Inicio
    		 Mientras (contraseña =¡ "Admin") Entonces
    		     Mostrar << "contraseña incorrecta, intente de nuevo";
    		     Leer >> contraseña;
-   		 FinMientras 
-    
-		sesionActiva = 1;
-		sino
-		sesionActiva = 0;
-	Finsi
+   		 FinMientras
+		Mostrar << "contraseña correcta, sesion inciada como administrador";
+	
+	sino
+	Mostrar <<"Bienvenido, ha iniciado sesion como cliente";
+Finsi
 Fin
 
 casillasPedidos(e: pedidosCont: entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);
@@ -270,9 +288,10 @@ Inicio
 		
 Fin
 
-// opciones antes de culminar el pedido uwu nya
-confirmaPedido(e/s: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS: cadena, R,RC:boleano);
+// opciones antes de culminar el pedido
+confirmaPedido(e/s: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
 Inicio
+	Var RC: boleano;
 	Mostrar << "";
 	i = 0: entero;
 		para (i = 1 hasta i = 6) hacer;
@@ -305,6 +324,6 @@ Inicio
 			Mostrar "Pedido Realizado con exito";
 			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
 			Leer >> R;
-			pedidosCont = pedidosCont + 1;	
+			pedidosCont = pedidosCont + 1;
 		FinSi
 Fin
