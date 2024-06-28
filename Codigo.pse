@@ -11,16 +11,15 @@ Inicio
 
 	//vectores:
 	pedidoAux[4], casilla1[6], casilla2[6], casilla3[6], casilla4[6], casilla5[6]: entero;
-	TipoR[6] = ["Camisa Chemise","Franela","Camiseta","Jersey","Camisa de Boton","Sueter"]: cadena;
-	Talla[12] = ["3-4", "5-6", "7-8", "9-11", "12-14", "14-15", "S", "M", "L", "XL", "XXL" ,"XXXL"]: cadena;
+	tipoR[6] = ["Camisa Chemise","Franela","Camiseta","Jersey","Camisa de Boton","Sueter"]: cadena;
+	talla[12] = ["3-4", "5-6", "7-8", "9-11", "12-14", "14-15", "S", "M", "L", "XL", "XXL" ,"XXXL"]: cadena;
 	tipoT[6] = ["Atlética", "Micro-durazno", "Dry-Fit", "Terry-Spum", "Algodon", "Semi-Algodón"]: cadena;
 	tipoS[5] = ["Sublimación Minimalista", "Sublimación Completa", "Bordado", "Vinil Textil", "DTF"]: cadena;
 	
 	InicioSesion(s:sesion, sesionActiva :boleano, contraseña: cadena);
 	Mostrar << InicioSesion;
  
-	Si (sesion = 1) Entonces 	//Sesion Cliente
-		
+	Si (sesion = 1) Entonces 	//Sesion Cliente		
 		Repetir
 			pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);		
 
@@ -31,47 +30,17 @@ Inicio
 			calcularCosto(acumTela, acumSub: Real);
 			llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
 		    
-			// opciones antes de culminar el pedido uwu nya
-			Mostrar << "";
-			i = 0: entero;
-			para (i = 1 hasta i = 6) hacer;
-			
-				Si (i = 1) Entonces
-					Mostrar << TipoR[pedidoAux[1]],", ";	
-				SiNo
-				Si (i = 2) Entonces
-					Mostrar <<"Talla: ", TipoR[pedidoAux[2]],", ";
-				SiNo
-				Si (i = 3) Entonces
-					Mostrar <<"Tela "; TipoR[pedidoAux[3]],", ";
-				SiNo
-				Si (i = 4) Entonces
-					Mostrar << "Tecnica: "TipoR[pedidoAux[4]]".";
-				SiNo
-				FinSi
-			finpara
-			Mostrar "¿Confirma su pedido? (1: si, 0: no)";
-			Leer >> RC;
-
-			Si (RC = 0) Entonces //si no confirma
-			Mostrar << "Pedido Cancelado";
-			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
-			Leer >> R;
-			
-			SiNo // si confirma
-			Mostrar "Pedido Realizado con exito";
-			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
-			Leer >> R;
-			pedidosCont = pedidosCont + 1;	
-			FinSi
-
+			confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R, RC:boleano);
+			Mostrar << confirmaPedido();
 		Hasta (R = 0)
 		FinRepetir
 		// recibo final
+
 		mostrarCostos(costoTotal, acumSub, acumTela: Real);
 		Mostrar << mostrarCostos;
 
 		sino	//Sesion Administrador
+		// revisa pedidos
 		
 	FinSi 
 
@@ -299,4 +268,43 @@ Inicio
 	
 	FinEnCaso
 		
+Fin
+
+// opciones antes de culminar el pedido uwu nya
+confirmaPedido(e/s: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS: cadena, R,RC:boleano);
+Inicio
+	Mostrar << "";
+	i = 0: entero;
+		para (i = 1 hasta i = 6) hacer;
+			
+			Si (i = 1) Entonces
+						Mostrar << tipoR[pedidoAux[1]],", ";	
+				SiNo
+				Si (i = 2) Entonces
+						Mostrar <<"Talla: ", Talla[pedidoAux[2]],", ";
+				SiNo
+				Si (i = 3) Entonces
+						Mostrar <<"Tela "; tela[pedidoAux[3]],", ";
+				SiNo
+				Si (i = 4) Entonces
+						Mostrar << "Tecnica: "tipoS[pedidoAux[4]]".";
+				SiNo
+			FinSi
+
+		finpara
+		
+		Mostrar "¿Confirma este pedido? (1: si, 0: no)";
+		Leer >> RC;
+
+		Si (RC = 0) Entonces //si no confirma
+			Mostrar << "Pedido Cancelado";
+			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
+			Leer >> R;
+			
+		SiNo // si confirma
+			Mostrar "Pedido Realizado con exito";
+			Mostrar << "¿Desea realizar otro pedido? (1:Si, 0: No)";
+			Leer >> R;
+			pedidosCont = pedidosCont + 1;	
+		FinSi
 Fin
