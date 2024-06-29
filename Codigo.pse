@@ -383,103 +383,103 @@ Inicio
 	Encaso (pedidosCont > 1) sea;
 		caso (pedidosCont >= 1)		
 			//pedido 1
-			Mostrar << "pedido 1";
+			Mostrar << "pedido 1: ";
 			para (i = 1 hasta i = 6) hacer;
-						Si (i = 1) Entonces
-									Mostrar << tipoR[pedido1[1]],", ";	
+						Si (i = 1) Entonces;
+								Mostrar << tipoR[pedido1[1]],", ";	
 							SiNo
-							Si (i = 2) Entonces
-									Mostrar <<"Talla: ", Talla[pedido1[2]],", ";
+							Si (i = 2) Entonces;
+								Mostrar <<"Talla: ", Talla[pedido1[2]],", ";
 							SiNo
-							Si (i = 3) Entonces
-									Mostrar <<"Tela "; tela[pedido1[3]],", ";
+							Si (i = 3) Entonces;
+								Mostrar <<"Tela ", tela[pedido1[3]],", ";
 							SiNo
-							Si (i = 4) Entonces
-									Mostrar << "Tecnica: "tipoS[pedido1[4]]".";
+							Si (i = 4) Entonces;
+								Mostrar << "Tecnica: ", tipoS[pedido1[4]]".";
 							SiNo
 						FinSi
 			finpara
-			Mostrar << "Diseño: " diseñosPedidos[1];
+			Mostrar << "Diseño: ", diseñosPedidos[1];
 
-		caso (pedidosCont >= 2)
+		caso (pedidosCont >= 2);
 					//pedido 2
 			Mostrar << "pedido 2";
 			para (i = 1 hasta i = 6) hacer;
-						Si (i = 1) Entonces
+						Si (i = 1) Entonces;
 									Mostrar << tipoR[pedido2[1]],", ";	
 							SiNo
-							Si (i = 2) Entonces
+							Si (i = 2) Entonces;
 									Mostrar <<"Talla: ", Talla[pedido2[2]],", ";
 							SiNo
-							Si (i = 3) Entonces
-									Mostrar <<"Tela "; tela[pedido2[3]],", ";
+							Si (i = 3) Entonces;
+									Mostrar <<"Tela ", tela[pedido2[3]],", ";
 							SiNo
-							Si (i = 4) Entonces
-									Mostrar << "Tecnica: "tipoS[pedido2[4]]".";
+							Si (i = 4) Entonces;
+									Mostrar << "Tecnica: ", tipoS[pedido2[4]],".";
 							SiNo
 						FinSi
 			finpara
-			Mostrar << "Diseño: " diseñosPedidos[2];
+			Mostrar << "Diseño: ", diseñosPedidos[2];
 
-		caso (pedidosCont >= 3)
+		caso (pedidosCont >= 3);
 					//pedido 3
 			Mostrar << "pedido 3";
 			para (i = 1 hasta i = 6) hacer;
-						Si (i = 1) Entonces
-									Mostrar << tipoR[pedido3[1]],", ";	
+						Si (i = 1) Entonces;
+								Mostrar << tipoR[pedido3[1]],", ";	
 							SiNo
-							Si (i = 2) Entonces
-									Mostrar <<"Talla: ", Talla[pedido3[2]],", ";
+							Si (i = 2) Entonces;
+								Mostrar <<"Talla: ", Talla[pedido3[2]],", ";
 							SiNo
-							Si (i = 3) Entonces
-									Mostrar <<"Tela "; tela[pedido3[3]],", ";
+							Si (i = 3) Entonces;
+								Mostrar <<"Tela ", tela[pedido3[3]],", ";
 							SiNo
-							Si (i = 4) Entonces
-									Mostrar << "Tecnica: "tipoS[pedido3[4]]".";
+							Si (i = 4) Entonces;
+								Mostrar << "Tecnica: ", tipoS[pedido3[4]]".";
 							SiNo
 						FinSi
 			finpara
-			Mostrar << "Diseño: " diseñosPedidos[3];
+			Mostrar << "Diseño: ", diseñosPedidos[3];
 
-		caso (pedidosCont >= 4)
+		caso (pedidosCont >= 4);
 					//pedido 4
 			Mostrar << "pedido 4";
 			para (i = 1 hasta i = 6) hacer;
-						Si (i = 1) Entonces
-									Mostrar << tipoR[pedido4[1]],", ";	
+						Si (i = 1) Entonces;
+								Mostrar << tipoR[pedido4[1]],", ";	
 							SiNo
-							Si (i = 2) Entonces
-									Mostrar <<"Talla: ", Talla[pedido4[2]],", ";
+							Si (i = 2) Entonces;
+								Mostrar <<"Talla: ", Talla[pedido4[2]],", ";
 							SiNo
-							Si (i = 3) Entonces
-									Mostrar <<"Tela "; tela[pedido4[3]],", ";
+							Si (i = 3) Entonces;
+								Mostrar <<"Tela ", tela[pedido4[3]],", ";
 							SiNo
-							Si (i = 4) Entonces
-									Mostrar << "Tecnica: "tipoS[pedido4[4]]".";
+							Si (i = 4) Entonces;
+								Mostrar << "Tecnica: "tipoS[pedido4[4]]".";
 							SiNo
 						FinSi
 			finpara
-			Mostrar << "Diseño: " diseñosPedidos[4];
+			Mostrar << "Diseño: ", diseñosPedidos[4];
 
 		
 		otro caso // pedido 5
 					//pedido 5
 			Mostrar << "pedido 5";
 			para (i = 1 hasta i = 6) hacer;
-						Si (i = 1) Entonces
+						Si (i = 1) Entonces;
 									Mostrar << tipoR[pedido5[1]],", ";	
 							SiNo
-							Si (i = 2) Entonces
+							Si (i = 2) Entonces;
 									Mostrar <<"Talla: ", Talla[pedido5[2]],", ";
 							SiNo
-							Si (i = 3) Entonces
-									Mostrar <<"Tela "; tela[pedido5[3]],", ";
+							Si (i = 3) Entonces;
+									Mostrar <<"Tela ", tela[pedido5[3]],", ";
 							SiNo
-							Si (i = 4) Entonces
-									Mostrar << "Tecnica: "tipoS[pedido5[4]]".";
+							Si (i = 4) Entonces;
+									Mostrar << "Tecnica: ", tipoS[pedido5[4]]".";
 							SiNo
 						FinSi
 			finpara
-			Mostrar << "Diseño: " diseñosPedidos[5];
-	Fin EnCaso		
+			Mostrar << "Diseño: ", diseñosPedidos[5];
+	FinEnCaso		
 Fin
