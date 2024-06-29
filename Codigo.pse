@@ -19,20 +19,20 @@ Inicio
 
 	
 	Mientras (salir =¡ 1) hacer
-	InicioSesion(s:sesion, contraseña: cadena);
+	InicionSesion (s:sesion:entero, e/s: salir: boleano); 
 	Mostrar << InicioSesion;
 			Si (sesion = 1) Entonces 	//Sesion Cliente		
 		
 			Repetir
-				pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);		
+				pedidoAux = casillasPedidos(e:pedidosCont, pedido1, pedido2, pedido3, pedido4, pedido5: entero);
 
-				menuPedido(tipoR,tipoS,tipoT,tipoR:Entero);
+				 menuPedido (s:diseñosPedidos: cadena, pedidoAux: entero, e: pedidosCont: entero);
 				Mostrar << menuPedido;
-				precioTela = calcularPrecioTela(pedidoAux: Real);
-				calcularCosto(acumTela, acumSub: Real);
-				llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
+				precioTela = calcularPrecioTela (pedidoAux: entero): Real;
+				calcularCosto (e/s:pedidoAux: entero, acumTela, acumSub: Real);
+				 llenarPedidos(e: pedidosCont, pedidosAux, pedido1, pedido2, pedido3, pedido4, pedido5: entero);
 				
-				confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R:boleano);
+				confirmarPedido(e: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
 				Mostrar << confirmaPedido();
 				
 			Hasta (R = 0)
@@ -40,19 +40,19 @@ Inicio
 			// recibo final
 			
 			Mostrar << "¡Gracias Por realizar su pedido con nosotros!";
-			mostrarCostos(costoTotal, acumSub, acumTela: Real);
+			mostrarCostos(e/s: acumSub, acumTela: Real);
 			Mostrar << mostrarCostos;
 
 			sino	//Sesion Administrador
 			Repetir	
 				
-				menuAdmin (s: RP:entero);
+				menuAdmin (s:RP:entero);
 				Mostrar << menuAdmin;
 
 				si (RP = 1) Entonces; // mostrar pedidos 
 					
 					si (pedidosCont > 1)Entonces;
-						mostrarPedidos ();
+						mostrarPedidos (e:pedidosCont, pedido1, pedido2, pedido3, pedido4, pedido5: entero, tipoR, talla, tela, tipoS, diseñosPedidos:cadena);
 						Mostrar << mostrarPedidos;
 						sino
 						Mostrar << "No hay pedidos"; 
@@ -60,7 +60,8 @@ Inicio
 	
 				sino
 				Si (RP = 2)  // mostrar costos
-				mostrarCostos;
+				mostrarCostos(e/s: acumSub, acumTela: Real);
+				mostrar << mostrarCostos;
 				sino
 				Mostrar << "";
 				Finsi
@@ -340,7 +341,7 @@ Fin
 
 
 //
-Procedimiento confirmaPedido(e: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
+Procedimiento confirmarPedido(e: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
 Inicio
 	Var RC: boleano;
 	i = 0: entero;
