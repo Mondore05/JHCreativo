@@ -3,7 +3,7 @@ Algoritmo JHCreativo
 
 Inicio
 	Var 
-	precioTela, costoTotal: real , sesion: entero,contraseña: cadena;
+	precioTela, costoTotal: real , sesion:entero,contraseña: cadena;
 	R: boleano;
 	
 	//contadores y acumuladores:
@@ -20,33 +20,34 @@ Inicio
 	
 	InicioSesion(s:sesion, contraseña: cadena);
 	Mostrar << InicioSesion;
- 
-	Si (sesion = 1) Entonces 	//Sesion Cliente		
-		Repetir
-			pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);		
+	
+	Mientras (salir =¡ 1)hacer
+			Si (sesion = 1) Entonces 	//Sesion Cliente		
+			Repetir
+				pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);		
 
-			menuPedido(tipoR,tipoS,tipoT,tipoR:Entero);
-			Mostrar << menuPedido;
+				menuPedido(tipoR,tipoS,tipoT,tipoR:Entero);
+				Mostrar << menuPedido;
 
-			precioTela = calcularPrecioTela(tipoT: Real);
-			calcularCosto(acumTela, acumSub: Real);
-			llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
-		    
-			confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R:boleano);
-			Mostrar << confirmaPedido();
+				precioTela = calcularPrecioTela(tipoT: Real);
+				calcularCosto(acumTela, acumSub: Real);
+				llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
+				
+				confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R:boleano);
+				Mostrar << confirmaPedido();
 
-		Hasta (R = 0)
-		FinRepetir
-		// recibo final
+			Hasta (R = 0)
+			FinRepetir
+			// recibo final
 
-		mostrarCostos(costoTotal, acumSub, acumTela: Real);
-		Mostrar << mostrarCostos;
+			mostrarCostos(costoTotal, acumSub, acumTela: Real);
+			Mostrar << mostrarCostos;
 
-		sino	//Sesion Administrador
-					// revisa pedidos
-		
-	FinSi 
-
+			sino	//Sesion Administrador
+						// revisa pedidos
+			
+		FinSi 
+	FinMientras
 Fin
 
 procedimiento menuPedido (S:tipoR,tipoS,tipoT,tipoR:Entero);
@@ -213,31 +214,36 @@ Inicio
 
 Fin
 
-Procedimiento InicionSesion (s:sesion, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
+Procedimiento InicionSesion (s:sesion: entero, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
 Inicio 
 	Mostrar << "Bienvenido, eliga que tipo de sesion desea inciar";
 	Mostrar << "1: Cliente";
 	Mostrar << "2: Administrador";
+	Mostrar << "3: Salir";
 	Leer >> sesion;
 
-	Mientras (sesion < 1 or sesion > 2) hacer;
-		Mostrar <<"dato invalido, por favor eliga cliente o administrador";
+	Mientras (sesion < 1 or sesion > 3) hacer;
+		Mostrar <<"dato invalido, por favor eliga una de las opciones dadas";
 		Leer >> sesion; 
 	FinMientras
 
 	Si (sesion = 2)Entonces;
- 	  	 Mostrar <<"Ingrese la clave de administrador";
-  		  Leer >> contraseña;
-
-   		 Mientras (contraseña =¡ "Admin") Entonces
-   		     Mostrar << "contraseña incorrecta, intente de nuevo";
-   		     Leer >> contraseña;
-   		 FinMientras
-		Mostrar << "contraseña correcta, sesion inciada como administrador";
-	
-	sino
-	Mostrar <<"Bienvenido, ha iniciado sesion como cliente";
-Finsi
+ 		 Mostrar <<"Ingrese la clave de administrador";
+  			Leer >> contraseña;
+		
+		 Mientras (contraseña =¡ "Admin") Entonces;
+		     Mostrar << "contraseña incorrecta, intente de nuevo";
+		     Leer >> contraseña;		
+		 FinMientras
+		Mostrar << "contraseña correcta, sesion inciada como administrador";	
+		
+		sino
+		Si (sesion = 3)Entonces;
+		Mostrar <<"Bienvenido, ha iniciado sesion como cliente";
+		sino 
+		Mostrar "!Vuelva pronto¡";
+		salir = 1;
+	Finsi
 Fin
 
 casillasPedidos(e: pedidosCont: entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);
