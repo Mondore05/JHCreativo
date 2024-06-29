@@ -44,8 +44,25 @@ Inicio
 			Mostrar << mostrarCostos;
 
 			sino	//Sesion Administrador
-						// revisa pedidos
-			
+			Repetir	
+				menuAdmin (s: RP:entero);
+				si (RP = 1) Entonces; // mostrar pedidos 
+					
+					si (pedidosCont > 1)Entonces;
+						mostrarPedidos ();
+						Mostrar << mostrarPedidos;
+						sino
+						Mostrar << "No hay pedidos"; 
+					Finsi
+	
+				sino
+				Si (RP = 2)  // mostrar costos
+				
+				sino
+				Mostrar << "";
+				Finsi
+			hasta (RP = 3)Sea;
+			FinRepetir
 		FinSi 
 	FinMientras
 Fin
@@ -176,10 +193,9 @@ Inicio
 		    		Finsi
 		   	Finsi
 		Finsi
-*/
 Fin
 
-mostrarCostos(E/S: acumSub, acumTela: Real);
+Procedimiento mostrarCostos(E/S: acumSub, acumTela: Real);
 Inicio
 	var costoTotal: real:
 	costoTotal = acumSub + acumTela;
@@ -249,7 +265,7 @@ Inicio
 	Finsi
 Fin
 
-casillasPedidos(e: pedidosCont: entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);
+Funcion casillasPedidos(e: pedidosCont: entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);
 Inicio
 	EnCaso (pedidosCont => 1)Sea;
 		
@@ -298,14 +314,15 @@ Inicio
 Fin
 
 // opciones antes de culminar el pedido
-confirmaPedido(e/s: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
+Procedimiento confirmaPedido(e/s: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
 Inicio
 	Var RC: boleano;
 	Mostrar << "";
 	i = 0: entero;
 	
 	Si (pedidosCont < 6) Entonces
-				para (i = 1 hasta i = 6) hacer;
+		
+		para (i = 1 hasta i = 6) hacer;
 			
 			Si (i = 1) Entonces
 						Mostrar << tipoR[pedidoAux[1]],", ";	
@@ -342,4 +359,57 @@ Inicio
 		Mostrar << "Lo sentimos ha alcanzado el limite de pedidos por usuario (5)";
 		R = 0;
 	FinSi
+Fin
+
+//opciones del administrador 
+Procedimiento menuAdmin (s. RP:entero);
+Inicio 
+	Mostrar << "Bienvenido al Administrador";
+	Mostrar << "opciones:";
+	Mostrar << "1: ver los pedidos recibidos";
+	Mostrar << "2: mostrar costes de pedidos";
+	Mostrar << "3: Salir";
+	Leer >> RP;
+
+	Mientras (RP < 1 and RP > 3) Entonces;
+		Mostrar << "dato invalido, por favor intente de nuevo";
+		Leer >> RP;
+	FinMientras
+Fin 
+
+procedimiento mostrarPedidos (e/s:contPedidos);
+Inicio
+	Encaso (pedidosCont > 1) sea;
+		caso (pedidosCont = 1)		
+			//pedido 1
+			Mostrar << "pedido 1";
+			para (i = 1 hasta i = 6) hacer;
+						Si (i = 1) Entonces
+									Mostrar << tipoR[pedido1[1]],", ";	
+							SiNo
+							Si (i = 2) Entonces
+									Mostrar <<"Talla: ", Talla[pedido1[2]],", ";
+							SiNo
+							Si (i = 3) Entonces
+									Mostrar <<"Tela "; tela[pedido1[3]],", ";
+							SiNo
+							Si (i = 4) Entonces
+									Mostrar << "Tecnica: "tipoS[pedido1[4]]".";
+							SiNo
+						FinSi
+			finpara
+			Mostrar << "Diseño: " diseñosPedidos[1];
+
+
+		caso (pedidosCont < 2)
+		
+		caso (pedidosCont = 3)
+		
+		caso (pedidosCont = 4)
+		
+		otro caso // pedido 5
+	
+	Fin EnCaso
+	
+		
 Fin
