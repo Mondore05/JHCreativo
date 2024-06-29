@@ -1,22 +1,22 @@
 
 Algoritmo JHCreativo
-
 Inicio
 	Var 
-	precioTela, costoTotal: real , sesion:entero,contraseña: cadena;
-	R: boleano;
-	
-	//contadores y acumuladores:
-	acumTela = 0, acumSub = 0 :Real;
-	pedidosCont = 1: Entero;
+    //normales:
+    precioTela, RP, sesion: entero, R, Salir = 0: boleano;
 
-	//vectores:
-	pedidoAux[4], casilla1[6], casilla2[6], casilla3[6], casilla4[6], casilla5[6]: entero;
-	tipoR[6] = ["Camisa Chemise","Franela","Camiseta","Jersey","Camisa de Boton","Sueter"]: cadena;
+    //contadores y acumuladores:
+    acumTela = 0, acumSub = 0: Real;
+    pedidosCont = 1: Entero;
+
+    //vectores:
+	pedidoAux[4], pedido1[6], pedido2[6], pedido3[6], pedido4[6], pedido5[6]: entero;
+	tipoR[6] = ["Camisa Chemise", "Franela", "Camiseta", "Jersey", "Camisa de Boton", "Sueter"]: cadena;
 	talla[12] = ["3-4", "5-6", "7-8", "9-11", "12-14", "14-15", "S", "M", "L", "XL", "XXL" ,"XXXL"]: cadena;
 	tipoT[6] = ["Atlética", "Micro-durazno", "Dry-Fit", "Terry-Spum", "Algodon", "Semi-Algodón"]: cadena;
 	tipoS[5] = ["Sublimación Minimalista", "Sublimación Completa", "Bordado", "Vinil Textil", "DTF"]: cadena;
-	diseñosPedidos[5]: cadena;
+	diseñosPedidos[5]:cadena;
+
 	
 	Mientras (salir =¡ 1) hacer
 	InicioSesion(s:sesion, contraseña: cadena);
@@ -34,7 +34,7 @@ Inicio
 				
 				confirmaPedido(e/s: pedidosCont, pedidoAux:entero, tipoR, talla, tela, tipoS:cadena, R:boleano);
 				Mostrar << confirmaPedido();
-
+				
 			Hasta (R = 0)
 			FinRepetir
 			// recibo final
@@ -45,7 +45,10 @@ Inicio
 
 			sino	//Sesion Administrador
 			Repetir	
+				
 				menuAdmin (s: RP:entero);
+				Mostrar << menuAdmin;
+
 				si (RP = 1) Entonces; // mostrar pedidos 
 					
 					si (pedidosCont > 1)Entonces;
@@ -67,10 +70,11 @@ Inicio
 	FinMientras
 Fin
 
-procedimiento menuPedido (S:tipoR,tipoS,tipoT,tipoR:Entero);
+//
+procedimiento menuPedido (s:diseñosPedidos: cadena, pedidoAux: entero, e: pedidosCont: entero);
 Inicio
 	Var RD: boleano;
-		
+		opcionDiseño:entero;
 
 		Mostrar << "Bienvenido al Sistema De Sublimado de JHCreativo";
 		Mostrar << "Elija el tipo de ropa que desee";
@@ -119,8 +123,35 @@ Inicio
 		Leer > RD;
 
 		Si (RD = 0) Entonces // Diseños del Jesus
-			Mostrar << ""; //Salto de linea
-			Mostrar << ""; 
+			Mostrar << "1: Collage Futbolista Cristiano Ronaldo";
+			Mostrar << "2: Modelo y LineArt del Porsche 911 GT3 RS";
+			Mostrar << "3: Modelos y LineArt del Nissan Skyline GTR R34";
+			Mostrar << "4: Estampado estilizado del Toyota Supra [Grande Espalda]";
+			Mostrar << "5: Estampado Grand Theft Auto San Andreas [Grande Espalda]";
+			Leer >> opcionDiseño;
+
+			Mientras (opcionDiseño < 1 or opcionDiseño > 5) Hacer;
+				Mostrar << "error, por favor eliga una opcion valida";
+				Leer >> opcionDiseño;			
+			FinMientras
+
+			EnCaso (opcionDiseño > 0)sea;
+				caso (opcionDiseño = 1);
+					diseñosPedidos[pedidosCont] = "Collage Futbolista Cristiano Ronaldo";
+
+				caso (opcionDiseño = 2);
+					diseñosPedidos[pedidosCont] = "Modelo y LineArt del Porsche 911 GT3 RS";
+					
+				caso (opcionDiseño = 3);
+					diseñosPedidos[pedidosCont] = "Modelos y LineArt del Nissan Skyline GTR R34";
+	
+				caso (opcionDiseño = 4);
+					diseñosPedidos[pedidosCont] = "Estampado estilizado del Toyota Supra [Grande Espalda]";
+					
+				otro Caso
+					diseñosPedidos[pedidosCont] = "Estampado Grand Theft Auto San Andreas [Grande Espalda]"; 
+			FinEnCaso
+			Mostrar << "Diseño guardado";
 		SiNo
 		Mostrar << "A continuacion escriba el diseño que desea sublimar en su pedido";
 		Leer >> diseñosPedidos[pedidosCont];
@@ -128,16 +159,11 @@ Inicio
 		FinSi
 
 Fin
-
-Procedimiento calcularCosto (E/S:acumTela,acumSub:Real);
+							
+Procedimiento calcularCosto (e/s:pedidoAux: entero, acumTela, acumSub: Real);
 Inicio
 
-	//pedido 1
 	//chemise, franelas y camisas
-
-	//Costos de Tela
-	//chemise, franelas y camisas
-
 	Si (pedidoAux[1] >= 1 or  pedidoAux[1] <= 3) And (pedidoAux[2] >= 1 or pedidoAux[2] <= 5) Entonces;
 		// 1mts
 		acumTela = acumTela + precioTela;
@@ -157,7 +183,6 @@ Inicio
 			Finsi
 		Finsi
 	Finsi
-
 
 	// Jersey, Camisa de Boton y Sueters
 	Si (pedidoAux[1] >= 4 or  pedidoAux[1] <= 6) And (pedidoAux[2] >= 1 or pedidoAux[2] <= 5) Entonces;
@@ -194,12 +219,12 @@ Inicio
 		   	Finsi
 		Finsi
 Fin
-
-Procedimiento mostrarCostos(E/S: acumSub, acumTela: Real);
+//
+Procedimiento mostrarCostos(e/s: acumSub, acumTela: Real);
 Inicio
 	var costoTotal: real:
 	costoTotal = acumSub + acumTela;
-	costoTotal = costoTotal + (costoTotal * 0.20);
+	costoTotal = costoTotal + (costoTotal * 0.20); // 20 porciento a pagar el cliente
 
 	Mostrar << "Costes del pedido";
 	Mostrar << "Costo en tela: " acumTela;
@@ -207,8 +232,8 @@ Inicio
 	Mostrar << "Costo total del pedido: ", costoTotal;
 
 Fin
-
-Funcion calcularPrecioTela (pedidoAux): Real;
+//
+Funcion calcularPrecioTela (pedidoAux: entero): Real;
 Inicio
 	precioTAux : Real;
 	EnCaso (pedidoAux[3] > 0 pedidoAux[3] <= 6)Sea;
@@ -233,8 +258,11 @@ Inicio
 	Devolver(precioTAux);
 Fin
 
-Procedimiento InicionSesion (s:sesion: entero, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
+// 
+Procedimiento InicionSesion (s:sesion:entero, e/s: salir: boleano); 
 Inicio 
+	var contraseña = "Admin": cadena;
+
 	Mostrar << "Bienvenido, eliga que tipo de sesion desea inciar";
 	Mostrar << "1: Cliente";
 	Mostrar << "2: Administrador";
@@ -265,61 +293,60 @@ Inicio
 	Finsi
 Fin
 
-Funcion casillasPedidos(e: pedidosCont: entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);
+//
+Funcion casillasPedidos(e:pedidosCont, pedido1, pedido2, pedido3, pedido4, pedido5: entero);
 Inicio
 	EnCaso (pedidosCont => 1)Sea;
-		
 		Caso (pedidosCont = 1);
-			Devolver (casilla1);
+			Devolver (pedido1);
 
 		Caso (pedidosCont = 2);
-			Devolver (casilla2);
+			Devolver (pedido2);
 
 		Caso (pedidosCont = 3);
-			Devolver (casilla3);	
+			Devolver (pedido3);	
 		
 		Caso (pedidosCont = 4);
-			Devolver (casilla4);	
+			Devolver (pedido4);	
 		
-		Caso (pedidosCont = 5);
-			Devolver (casilla5);
-		
-		Otro Caso 
-			Devolver (casilla6);
+		 Otro Caso 
+			Devolver (pedido5);
 
 	FinEnCaso 	
 Fin
 
-Procedimiento llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5: entero);
+//
+Procedimiento llenarPedidos(e: pedidosCont, pedidosAux, pedido1, pedido2, pedido3, pedido4, pedido5: entero);
 Inicio
 	En Caso (pedidosCont > 0);
 
 		Caso (pedidosCont = 1);
-		casilla1 = pedidoAux;
+		pedido1 = pedidoAux;
 
 		Caso (pedidosCont = 2);
-		casilla2 = pedidoAux;
+		pedido2 = pedidoAux;
 
 		Caso (pedidosCont = 3);
-		casilla3 = pedidoAux;
+		pedido3 = pedidoAux;
 
 		Caso (pedidosCont = 4);
-		casilla4 = pedidoAux;
+		pedido4 = pedidoAux;
 
 		Otro Caso 
-		casilla5 = pedidoAux;
-	
+		pedido5 = pedidoAux;
 	FinEnCaso
 		
 Fin
 
-// opciones antes de culminar el pedido
-Procedimiento confirmaPedido(e/s: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
+
+//
+Procedimiento confirmaPedido(e: pedidosCont, pedidoAux: entero, tipoR, talla, tela, tipoS, diseñosPedidos: cadena, R:boleano);
 Inicio
 	Var RC: boleano;
-	Mostrar << "";
 	i = 0: entero;
-	
+
+	Mostrar << "";
+
 	Si (pedidosCont < 6) Entonces
 		
 		para (i = 1 hasta i = 6) hacer;
@@ -361,8 +388,8 @@ Inicio
 	FinSi
 Fin
 
-//opciones del administrador 
-Procedimiento menuAdmin (s. RP:entero);
+//
+Procedimiento menuAdmin (s:RP:entero);
 Inicio 
 	Mostrar << "Bienvenido al Administrador";
 	Mostrar << "opciones:";
@@ -376,8 +403,9 @@ Inicio
 		Leer >> RP;
 	FinMientras
 Fin 
-
-procedimiento mostrarPedidos (e/s:contPedidos);
+								
+//
+procedimiento mostrarPedidos (e:pedidosCont, pedido1, pedido2, pedido3, pedido4, pedido5: entero, tipoR, talla, tela, tipoS, diseñosPedidos:cadena);
 Inicio
 	var i = 1: entero;
 	Encaso (pedidosCont > 1) sea;
@@ -461,9 +489,8 @@ Inicio
 			finpara
 			Mostrar << "Diseño: ", diseñosPedidos[4];
 
-		
 		otro caso // pedido 5
-					//pedido 5
+					
 			Mostrar << "pedido 5";
 			para (i = 1 hasta i = 6) hacer;
 						Si (i = 1) Entonces;
