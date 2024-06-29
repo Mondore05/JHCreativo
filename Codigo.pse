@@ -18,18 +18,17 @@ Inicio
 	tipoS[5] = ["Sublimación Minimalista", "Sublimación Completa", "Bordado", "Vinil Textil", "DTF"]: cadena;
 	diseñosPedidos[5]: cadena;
 	
+	Mientras (salir =¡ 1) hacer
 	InicioSesion(s:sesion, contraseña: cadena);
 	Mostrar << InicioSesion;
-	
-	Mientras (salir =¡ 1)hacer
 			Si (sesion = 1) Entonces 	//Sesion Cliente		
+		
 			Repetir
 				pedidoAux = casillasPedidos(e:pedidosCont:entero, e/s: casilla1, casilla2, casilla3, casilla4, casilla5: entero);		
 
 				menuPedido(tipoR,tipoS,tipoT,tipoR:Entero);
 				Mostrar << menuPedido;
-
-				precioTela = calcularPrecioTela(tipoT: Real);
+				precioTela = calcularPrecioTela(pedidoAux: Real);
 				calcularCosto(acumTela, acumSub: Real);
 				llenarCasillas(e:pedidosCont:entero, e/s: pedidosAux, casilla1, casilla2, casilla3, casilla4, casilla5:entero);
 				
@@ -39,7 +38,8 @@ Inicio
 			Hasta (R = 0)
 			FinRepetir
 			// recibo final
-
+			
+			Mostrar << "¡Gracias Por realizar su pedido con nosotros!";
 			mostrarCostos(costoTotal, acumSub, acumTela: Real);
 			Mostrar << mostrarCostos;
 
@@ -114,22 +114,26 @@ Fin
 
 Procedimiento calcularCosto (E/S:acumTela,acumSub:Real);
 Inicio
-	//Costos de Tela
 
+	//pedido 1
 	//chemise, franelas y camisas
-	Si (tipoR >= 1 or  tipoR <= 3) And (talla >= 1 or talla <= 5) Entonces;
+
+	//Costos de Tela
+	//chemise, franelas y camisas
+
+	Si (pedidoAux[1] >= 1 or  pedidoAux[1] <= 3) And (pedidoAux[2] >= 1 or pedidoAux[2] <= 5) Entonces;
 		// 1mts
 		acumTela = acumTela + precioTela;
 	Sino
-		Si (tipoR >= 1 or  tipoR <= 3) And (talla > 5 or talla <= 9) Entonces;
+		Si (pedidoAux[1] >= 1 or  pedidoAux[1] <= 3) And (pedidoAux[2] > 5 or pedidoAux[2] <= 9) Entonces;
 			/// 1.5 mts
 			acumTela = acumTela + (precioTela * 1.5);
 		Sino
-			Si (tipoR >= 1 or  tipoR <= 3) And (talla > 9 or talla <= 15) Entonces;
+			Si (pedidoAux[1] >= 1 or  pedidoAux[1] <= 3) And (pedidoAux[2] > 9 or pedidoAux[2] <= 15) Entonces;
 				/// 1.75 mts
 				acumTela = acumTela + (precioTela * 1.75);
 			Sino
-				Si (tipoR >= 1 or  tipoR <= 3) And (talla > 9 or talla <= 15) Entonces;
+				Si (pedidoAux[1] >= 1 or  pedidoAux[1] <= 3) And (pedidoAux[2] > 9 or pedidoAux[2] <= 15) Entonces;
 					/// 2.3 mts
 					acumTela = acumTela + (precioTela * 2);
 				Finsi
@@ -139,15 +143,15 @@ Inicio
 
 
 	// Jersey, Camisa de Boton y Sueters
-	Si (tipoR >= 1 or  tipoR <= 3) And (talla >= 1 or talla <= 5) Entonces;
+	Si (pedidoAux[1] >= 4 or  pedidoAux[1] <= 6) And (pedidoAux[2] >= 1 or pedidoAux[2] <= 5) Entonces;
 		// 1.2mts
 		acumTela = acumTela + precioTela;
 	Sino
-		Si (tipoR >= 1 or  tipoR <= 3) And (talla > 5 or talla <= 9) Entonces;
+		Si (pedidoAux[1] >= 4 or pedidoAux[1] <= 6) And (pedidoAux[2] > 5 or pedidoAux[2] <= 9) Entonces;
 			/// 1.75 mts
 			acumTela = acumTela + (precioTela * 1.5);
 		Sino
-			Si (tipoR >= 1 or  tipoR <= 3) And (talla > 9 or talla <= 15) Entonces;
+			Si (pedidoAux[1] >= 4 or  pedidoAux[1] <= 6) And (pedidoAux[2] > 9 or pedidoAux[2] <= 15) Entonces;
 				/// 2.3 mts
 				acumTela = acumTela + (precioTela * 2.3);
 			Finsi
@@ -155,16 +159,16 @@ Inicio
 	Finsi
 
 	//Costo de Sublimaje 
-	Si (tipoS = 1) Entonces;
+	Si (pedidoAux[4] = 1) Entonces;
 			acumSub = acumSub + 2 ;
 		Sino
-			Si (tipoS= 2) Entonces;
+			Si (pedidoAux[4] = 2) Entonces;
 				acumSub = acumSub + 20;
 			Sino
-				Si (tipoS = 3) Entonces;
+				Si (tpedidoAux[4] = 3) Entonces;
 					acumSub = acumSub + 17;
 				Sino
-					Si (tipoS = 4) Entonces;
+					Si (pedidoAux[4] = 4) Entonces;
 						acumSub = acumSub + 16;
 					Sino
 						acumSub = acumSub + 17;
@@ -172,46 +176,45 @@ Inicio
 		    		Finsi
 		   	Finsi
 		Finsi
+*/
 Fin
 
-mostrarCostos(S:costoTotal, E/S: acumSub, acumTela: Real);
+mostrarCostos(E/S: acumSub, acumTela: Real);
 Inicio
-	
+	var costoTotal: real:
 	costoTotal = acumSub + acumTela;
 	costoTotal = costoTotal + (costoTotal * 0.20);
 
-	Mostrar << "¡Gracias Por realizar su pedido con nosotros!";
 	Mostrar << "Costes del pedido";
-	Mostrar << "Costo en metros2 de tela: " acumTela;
+	Mostrar << "Costo en tela: " acumTela;
 	Mostrar << "Costo en sublimación: " acumSub;
 	Mostrar << "Costo total del pedido: ", costoTotal;
 
 Fin
 
-Funcion calcularPrecioTela (tipoT): Real;
+Funcion calcularPrecioTela (pedidoAux): Real;
 Inicio
 	precioTAux : Real;
-	EnCaso (tipoT > 0 tipoT <= 6)Sea;
-		Caso (tipoT = 1);
+	EnCaso (pedidoAux[3] > 0 pedidoAux[3] <= 6)Sea;
+		Caso (pedidoAux[3] = 1);
 			precioTAux = 1.50;
 	
-		Caso (tipoT = 2);
+		Caso (pedidoAux[3] = 2);
 			precioTAux = 1.75;
 	
-		Caso (tipoT = 3);
+		Caso (pedidoAux[3] = 3);
 			precioTAux = 2;
 	
-		Caso (tipoT = 4);
+		Caso (pedidoAux[3] = 4);
 			precioTAux = 4;
 
-		Caso (tipoT = 5);
+		Caso (pedidoAux[3] = 5);
 			precioTAux = 3;
-
 		Otro Caso
 		precioTAux = 2.5;
 	FinEnCaso
-	Devolver(precioTAux);
 
+	Devolver(precioTAux);
 Fin
 
 Procedimiento InicionSesion (s:sesion: entero, sesionActiva :boleano, contraseña: cadena); // mejor declararlo entero?
@@ -300,7 +303,9 @@ Inicio
 	Var RC: boleano;
 	Mostrar << "";
 	i = 0: entero;
-		para (i = 1 hasta i = 6) hacer;
+	
+	Si (pedidosCont < 6) Entonces
+				para (i = 1 hasta i = 6) hacer;
 			
 			Si (i = 1) Entonces
 						Mostrar << tipoR[pedidoAux[1]],", ";	
@@ -332,4 +337,9 @@ Inicio
 			Leer >> R;
 			pedidosCont = pedidosCont + 1;
 		FinSi
+	
+	SiNo
+		Mostrar << "Lo sentimos ha alcanzado el limite de pedidos por usuario (5)";
+		R = 0;
+	FinSi
 Fin
