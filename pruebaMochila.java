@@ -17,8 +17,8 @@ public class pruebaMochila {
             llenarVector(pedidos, vectorAux);
             mochilaReverse(pedidos, vectorAux, mochila1, mochila2, mochila3);
             System.out.println(mochila1[0]);
-            // mostrarResultado(pedidos, mochila1, mochila2, mochila3);
-  
+            System.out.println(vectorAux[0]);
+
             System.out.println("¿desea ingresar otro pedido? 0: no, 1: si");
             r = scanner.nextInt();
 
